@@ -1,0 +1,43 @@
+import numpy as np
+def calculate_chi_square(observed, expected):
+    observed = np.array(observed)
+    expected = np.array(expected)
+    chi_square = np.sum((observed - expected) ** 2 / expected)
+    return chi_square	
+# Observed and expected frequencies
+observed_values = [10, 15, 20, 25]
+expected_values = [12, 15, 18, 25]
+# Calculate chi-square value
+chi_square_value = calculate_chi_square(observed_values, expected_values)
+# Display result
+print(f"The chi-square value is: {chi_square_value}")
+Output:   The chi-square value is: 0.5555555555555556
+11. Naïve Bayesian
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score, classification_report
+iris = load_iris()
+X = iris.data
+y = iris.target
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+model = GaussianNB()
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("\nClassification Report:\n", classification_report(y_test, y_pred))
+output:
+Accuracy: 0.9777777777777777
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00        19
+           1       1.00      0.92      0.96        13
+           2       0.93      1.00      0.96        13
+
+    accuracy                           0.98        45
+   macro avg       0.98      0.97      0.97        45
+weighted avg       0.98      0.98      0.98        45
+
+
+
